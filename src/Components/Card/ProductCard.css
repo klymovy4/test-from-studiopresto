@@ -1,0 +1,25 @@
+.image-wrapper {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.card {
+  height: fit-content;
+  max-width: 400px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  margin: 0.5rem;
+  border-radius: 7px;
+  padding: 1rem;
+}
+
+
+.footer-section {
+  display: flex;
+  justify-content: space-between;
+}
