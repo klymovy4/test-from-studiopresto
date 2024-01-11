@@ -14,19 +14,16 @@
   background-repeat: no-repeat;
   background-size: contain;
   width: 50%;
-  
 }
 .productDetails .descriptionWrapper {
-    flex: 1;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .productDetails .productFooter {
   display: flex;
   justify-content: space-between;
 }
-
-

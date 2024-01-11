@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Typography from "@mui/joy/Typography";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
@@ -9,7 +10,7 @@ import {
   plusOnePosition,
   removeOnePosition,
 } from "../../store/cartSlice";
-import { useEffect, useState } from "react";
+import ImageWrapper from "../ImageWrapper/ImageWrapper";
 
 export default function CartItem(props) {
   const dispatch = useDispatch();
@@ -25,18 +26,14 @@ export default function CartItem(props) {
 
   return (
     <div className={classes.cartItem}>
-      <div
-        className={classes.imgWrapper}
-        style={{
-          backgroundImage: `url(${image})`,
-        }}
-      ></div>
+      <ImageWrapper {...props} style={{ width: "33%" }} />
+  
       <Box className={classes.cartDescription}>
         <Typography level="h4" sx={{ mb: 0.5 }}>
           {title}
         </Typography>
         <Typography level="title-lg" sx={{ mt: 1, fontWeight: "xl" }}>
-          {priceCount.toFixed(2)} UA
+          {priceCount.toFixed(2)} ₴
         </Typography>
 
         <Box className={classes.cartCounter}>
@@ -44,26 +41,28 @@ export default function CartItem(props) {
             <Button
               disabled={quantity === 1}
               size="small"
-              variant="contained"
-              style={{ background: "#3b556f" }}
+              variant="outlined"
+              // style={{ background: "#3b556f" }}
               onClick={() => dispatch(removeOnePosition(props))}
             >
               -
             </Button>
             <div className={classes.quentity}>{quantity}</div>
             <Button
-              variant="contained"
+              variant="outlined"
               size="small"
-              style={{ background: "#3b556f" }}
+              // style={{ background: "#3b556f" }}  
               onClick={() => dispatch(plusOnePosition(props))}
             >
               +
             </Button>
           </div>
           <Button
-            variant="contained"
+            variant="outlined"
             size="small"
-            onClick={() => dispatch(remoteItem(props.id))}
+            onClick={() => {
+              dispatch(remoteItem(props.id));
+            }}
             color="error"
             startIcon={<DeleteIcon />}
           >

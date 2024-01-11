@@ -1,38 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import App from "./App";
 import ProductDetails from "./Components/ProductDetails/ProductDetails";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import MainPage from "./Components/MainPage/MainPage";
 import Header from "./Components/Header/Header";
-import DrawerComponent from "./Components/Drawer/Drawer";
 import { Outlet } from "react-router-dom";
 import CartComponent from "./Components/CartComponent/CartComponent";
+import OrderComponent from "./Components/OrderComponent/OrderComponent";
 import { Toolbar } from "@mui/material";
-import AlertComponent from "./Components/Alert/Alert";
+import "./index.css";
 
 function Layout() {
   return (
     <>
-    
       <Header />
       <Toolbar />
-    
       <Outlet />
-      {/* <AlertComponent /> */}
-    </>
-  );
-}
-
-function LayoutDrawer() {
-  return (
-    <>
-      <Header />
-      <CartComponent />
     </>
   );
 }
@@ -54,6 +40,10 @@ const router = createBrowserRouter([
         path: "cart",
         element: <CartComponent />,
         children: [],
+      },
+      {
+        path: "order",
+        element: <OrderComponent />,
       },
     ],
   },

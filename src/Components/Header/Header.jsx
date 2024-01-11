@@ -25,7 +25,7 @@ export default function Header() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { sm: "block" } }}
+            sx={{ display: { sm: "block" , cursor: 'pointer'} }}
             onClick={() => navigate("/")}
           >
             StudioPresto

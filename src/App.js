@@ -36,7 +36,7 @@ export default function App() {
     return false;
   }
 
-  function hanleSearch(event) {
+  function handleSearch(event) {
     const value = event.target.value;
     dispatch(findBySearch(value));
     setSearchValue(value);
@@ -50,7 +50,7 @@ export default function App() {
           placeholder="Search..."
           sx={{ width: "300px", margin: "0.5rem" }}
           value={searchValue}
-          onChange={(event) => hanleSearch(event)}
+          onChange={(event) => handleSearch(event)}
         />
         <Box
           style={{

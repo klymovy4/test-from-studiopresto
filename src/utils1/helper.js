@@ -15,18 +15,6 @@ export function cartCounter(state) {
   return state.reduce((acc, current) => acc + current.quantity, 0);
 }
 
-export function setPriceCurrentPosition(state) {
-  let a = [
-    { item: { price: 3.2 }, priceCurrentPosition: 0, quantity: 3 },
-    { item: { price: 2 }, priceCurrentPosition: 0, quantity: 31 },
-  ];
-
-  return state.map((item) => ({
-    ...item,
-    priceCurrentPosition: item.item.price * item.quantity,
-  }));
-}
-
 export function sumOfOnePosition(item) {
   return item.item.price * item.quantity;
 }

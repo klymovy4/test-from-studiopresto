@@ -8,6 +8,7 @@ import "./ProductCard.css";
 import { useNavigate } from "react-router-dom";
 import { addToCart } from "../../store/cartSlice";
 import { useDispatch } from "react-redux";
+import ImageWrapper from "../ImageWrapper/ImageWrapper";
 
 export default function BasicCard({ item }) {
   const dispatch = useDispatch();
@@ -24,10 +25,8 @@ export default function BasicCard({ item }) {
       }}
       onClick={() => navigate(`item/${item.id}`, { state: item })}
     >
-      <div
-        className="image-wrapper"
-        style={{ backgroundImage: `url(${item?.image})` }}
-      ></div>
+    
+      <ImageWrapper {...item} style={{ height: "300px" }} />
       <CardContent>
         <Typography level="body-xs">{item?.category}</Typography>
         <Typography fontWeight="md" color="neutral" textColor="text.primary">
@@ -35,7 +34,7 @@ export default function BasicCard({ item }) {
         </Typography>
 
         <Typography level="title-lg" sx={{ mt: 1, fontWeight: "xl" }}>
-          {item?.price} UA
+          {item?.price} ₴
         </Typography>
       </CardContent>
       <CardOverflow>

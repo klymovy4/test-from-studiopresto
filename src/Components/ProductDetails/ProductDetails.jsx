@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import Rating from "@mui/material/Rating";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/cartSlice";
+import ImageWrapper from "../ImageWrapper/ImageWrapper";
 
 export default function ProductDetails() {
   const { state } = useLocation();
@@ -14,10 +15,7 @@ export default function ProductDetails() {
 
   return (
     <div className={classes.productDetails}>
-      <div
-        className={classes.imageWrapper}
-        style={{ backgroundImage: `url(${item?.image})` }}
-      ></div>
+      <ImageWrapper {...item} style={{ width: "50%" }} />
       <div className={classes.descriptionWrapper}>
         <div>
           <Typography level="h3" sx={{ mb: 0.5 }}>
@@ -35,12 +33,11 @@ export default function ProductDetails() {
             readOnly
             name={item?.title}
             defaultValue={item?.rating.rate}
-            // precision={item?.rating?.rate}
           />
         </div>
         <div className={classes.productFooter}>
           <Typography level="title-lg" sx={{ mt: 1, fontWeight: "xl" }}>
-            {item?.price} UA
+            {item?.price} ₴
           </Typography>
           <Button
             variant="contained"

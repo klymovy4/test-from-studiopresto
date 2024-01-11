@@ -8,12 +8,11 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import useApi from "../../api/useApi";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
-const drawerWidth = 240;
+const drawerWidth = 175;
 
 export default function DrawerComponent() {
-  const dispatch = useDispatch();
   const { fetchItemsCategory, fetchSpetialCategory } = useApi();
   const { categories } = useSelector((state) => state.items);
 
@@ -36,18 +35,12 @@ export default function DrawerComponent() {
       >
         <Toolbar />
         <Box sx={{ overflow: "auto" }}>
-          {/* <ListItemButton>
-            <ListItemText primary={'All'} />
-          </ListItemButton> */}
           <List>
-          <ListItem
-                disablePadding
-                onClick={() => fetchSpetialCategory()}
-              >
-                <ListItemButton>
-                  <ListItemText primary={'All'} />
-                </ListItemButton>
-              </ListItem>
+            <ListItem disablePadding onClick={() => fetchSpetialCategory()}>
+              <ListItemButton>
+                <ListItemText primary={"All"} />
+              </ListItemButton>
+            </ListItem>
             {categories.map((text) => (
               <ListItem
                 key={text}
