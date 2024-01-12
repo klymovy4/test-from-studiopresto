@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { GET } from "./api";
-import {sliceItems, cartCounter} from '../utils1/helper'
+import { sliceItems } from "../utils/helper";
 import {
   setItems,
   setItemsCategory,
@@ -12,7 +12,8 @@ const pagePagination = 6;
 export default function useApi() {
   const dispatch = useDispatch();
 
-  const fetchItems = async function () { // move to init()
+  const fetchItems = async function () {
+    // move to init()
     const products = await GET("products");
 
     let slicedItems = sliceItems(products.data);
@@ -20,20 +21,8 @@ export default function useApi() {
     dispatch(setItems(products.data));
   };
 
-  // const sliceItems = function (products) {
-  //   return products.reduce((resultArray, item, index) => {
-  //     const chunkIndex = Math.floor(index / pagePagination);
-
-  //     if (!resultArray[chunkIndex]) {
-  //       resultArray[chunkIndex] = [];
-  //     }
-  //     resultArray[chunkIndex].push(item);
-
-  //     return resultArray;
-  //   }, []);
-  // };
-
-  const fetchItemsCategory = async function () { // move to init()
+  const fetchItemsCategory = async function () {
+    // move to init()
     let categories = await GET("products/categories");
     categories = categories.data.map(
       (element) => element.charAt(0).toUpperCase() + element.slice(1)

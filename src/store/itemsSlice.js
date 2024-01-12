@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {sliceItems} from '../utils1/helper'
+import {sliceItems} from '../utils/helper'
 
 const initialState = {
   items: [],

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Typography from "@mui/joy/Typography";
+import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -14,7 +14,7 @@ import ImageWrapper from "../ImageWrapper/ImageWrapper";
 
 export default function CartItem(props) {
   const dispatch = useDispatch();
-  const { image, title, price, quantity, id } = props;
+  const { title, price, quantity, id } = props;
   const [priceCount, setPriceCount] = useState(price);
   const { cart } = useSelector((state) => state.cart);
 
@@ -29,10 +29,10 @@ export default function CartItem(props) {
       <ImageWrapper {...props} style={{ width: "33%" }} />
   
       <Box className={classes.cartDescription}>
-        <Typography level="h4" sx={{ mb: 0.5 }}>
+        <Typography  sx={{ mb: 0.5 }}>
           {title}
         </Typography>
-        <Typography level="title-lg" sx={{ mt: 1, fontWeight: "xl" }}>
+        <Typography >
           {priceCount.toFixed(2)} ₴
         </Typography>
 
@@ -42,7 +42,6 @@ export default function CartItem(props) {
               disabled={quantity === 1}
               size="small"
               variant="outlined"
-              // style={{ background: "#3b556f" }}
               onClick={() => dispatch(removeOnePosition(props))}
             >
               -
@@ -51,7 +50,6 @@ export default function CartItem(props) {
             <Button
               variant="outlined"
               size="small"
-              // style={{ background: "#3b556f" }}  
               onClick={() => dispatch(plusOnePosition(props))}
             >
               +

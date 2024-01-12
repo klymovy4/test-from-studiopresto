@@ -1,18 +1,32 @@
 import { useSelector } from "react-redux";
-import { useFormik, Formik, Form, Field } from "formik";
-// import { Formik } from "formik";
+import { useFormik} from "formik";
 import { FormControl } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import SendIcon from "@mui/icons-material/Send";
-import Typography from "@mui/joy/Typography";
+import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { validationSchema } from "./yupSchema";
 import classes from "./FormComponent.module.css";
-import { useEffect } from "react";
-import axios from "axios";
+
 
 export default function FormComponent() {
-  const { totalPrice } = useSelector((state) => state.cart);
+  // const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const cart = useSelector((state) => state.cart);
+
+
+  
+  function concatResult(values) {
+    const cartResult = cart.cart;
+    const result  = {
+      ...values, 
+      cart: [...cart.cart],
+      totalPrice: cart.totalPrice
+    }
+    // cartResult.push(values)
+    console.log(result);
+  }
+
+  
 
   const formik = useFormik({
     initialValues: {
@@ -20,18 +34,19 @@ export default function FormComponent() {
       email: "",
       phone: "",
     },
-    onSubmit: async (event) => {
-    const formLink = `https://docs.google.com/forms/d/e/1FAIpQLSdaqy7_oa_ifX3LfwEA0cS4nsB8X9agV329K5YKhSXTy3SE8w/formResponse?usp=pp_url&entry.1656568190=${event.name}&entry.160385572=${event.email}&entry.986887705=${event.phone}&submit=Submit`;
-      const res = await fetch(formLink);
-    //   console.log(res);
-    console.log(formLink);
+    onSubmit: async (values) => {
+      // dend on google form
+      // const formLink = `https://docs.google.com/forms/d/e/1FAIpQLSdaqy7_oa_ifX3LfwEA0cS4nsB8X9agV329K5YKhSXTy3SE8w/formResponse?usp=pp_url&entry.1656568190=${event.name}&entry.160385572=${event.email}&entry.986887705=${event.phone}&submit=Submit`;
+      // const res = await fetch(formLink);
+
+      concatResult(values);
       formik.resetForm();
     },
     validationSchema,
   });
+
   return (
-    <div style={{ maxWidth: "550px", minWidth: "300px" }}>
-      <Typography level="h4">Your Order</Typography>
+    <div className={classes.formWrapper}>
       <form
         action="https://docs.google.com/forms/d/e/1FAIpQLSdslx8TdDc6XkmBJT-UbbZYuuV68Xn8OVwd9_Fe02y1Yb3G6A/formResponse"
         target="_self"
@@ -100,7 +115,7 @@ export default function FormComponent() {
             >
               Order
             </Button>
-            <Typography variant="body">{totalPrice.toFixed(2)} ₴</Typography>
+            <Typography variant="body">{cart.totalPrice.toFixed(2)} ₴</Typography>
           </div>
         </div>
       </form>

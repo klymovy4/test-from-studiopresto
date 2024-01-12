@@ -19,12 +19,11 @@ export function sumOfOnePosition(item) {
   return item.item.price * item.quantity;
 }
 
-export function subOfOnePosition(item) {
-  return item.item.price * item.quantity;
-}
-
-export function getTotalPrice (cart) {
-  return cart.reduce((total, item) => {
+export function getTotalPrice(cart) {
+  let total = cart.reduce((total, item) => {
     return total + item.priceCurrentPosition;
   }, 0);
-};
+
+  const roundedTotal = total.toFixed(2);
+  return parseFloat(roundedTotal);
+}

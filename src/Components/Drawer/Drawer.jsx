@@ -10,7 +10,7 @@ import ListItemText from "@mui/material/ListItemText";
 import useApi from "../../api/useApi";
 import { useSelector } from "react-redux";
 
-const drawerWidth = 175;
+const drawerWidth = 165;
 
 export default function DrawerComponent() {
   const { fetchItemsCategory, fetchSpetialCategory } = useApi();

@@ -2,10 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import {
   cartCounter,
-  subOfOnePosition,
   sumOfOnePosition,
   getTotalPrice,
-} from "../utils1/helper";
+} from "../utils/helper";
 import showNotification from "../Components/Notification/Notification";
 
 const initialState = {
@@ -44,7 +43,6 @@ export const cartSlice = createSlice({
         message: "Item has been added to cart!",
       });
     },
-    getQuantityOfProducts: (state, action) => {},
 
     remoteItem: (state, action) => {
       // DRY
@@ -53,9 +51,10 @@ export const cartSlice = createSlice({
       state.cartCounter = cartCounter(state.cart);
       state.cart.forEach((item) => {
         // DRY
-        item.priceCurrentPosition = subOfOnePosition(item); // DRY
-        state.totalPrice = getTotalPrice(state.cart); // DRY
+        item.priceCurrentPosition = sumOfOnePosition(item); // DRY
       });
+      state.totalPrice = getTotalPrice(state.cart); // DRY
+
       showNotification({
         type: "error",
         message: "Item has been removed from cart!",
@@ -96,7 +95,6 @@ export const cartSlice = createSlice({
 
 export const {
   addToCart,
-  getQuantityOfProducts,
   remoteItem,
   removeOnePosition,
   plusOnePosition,

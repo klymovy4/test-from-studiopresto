@@ -3,12 +3,12 @@ import Button from "@mui/joy/Button";
 import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import CardOverflow from "@mui/joy/CardOverflow";
-import Typography from "@mui/joy/Typography";
-import "./ProductCard.css";
+import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import { addToCart } from "../../store/cartSlice";
 import { useDispatch } from "react-redux";
 import ImageWrapper from "../ImageWrapper/ImageWrapper";
+import "./ProductCard.css";
 
 export default function BasicCard({ item }) {
   const dispatch = useDispatch();
@@ -16,6 +16,7 @@ export default function BasicCard({ item }) {
 
   return (
     <Card
+    
       sx={{
         width: 320,
         maxWidth: "100%",
@@ -27,13 +28,13 @@ export default function BasicCard({ item }) {
     >
     
       <ImageWrapper {...item} style={{ height: "300px" }} />
-      <CardContent>
-        <Typography level="body-xs">{item?.category}</Typography>
-        <Typography fontWeight="md" color="neutral" textColor="text.primary">
+      <CardContent style={{display: 'flex', justifyContent: 'start'}}>
+        <Typography variant="caption">{item?.category}</Typography>
+        <Typography  variant="subtitle1">
           {item.title}
         </Typography>
 
-        <Typography level="title-lg" sx={{ mt: 1, fontWeight: "xl" }}>
+        <Typography variant="subtitl2" sx={{ mt: 'auto', }}>
           {item?.price} ₴
         </Typography>
       </CardContent>

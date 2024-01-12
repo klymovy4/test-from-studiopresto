@@ -1,7 +1,7 @@
 .cartItem {
   display: flex;
   flex-direction: row;
-  margin: 0.5rem 0;
+  margin-bottom: 0.5rem;
   min-height: 140px;
   border-radius: 7px;
   height: fit-content;

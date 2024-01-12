@@ -1,10 +1,10 @@
 import Box from "@mui/material/Box";
-import Typography from "@mui/joy/Typography";
+import Typography from "@mui/material/Typography";
 import SendIcon from "@mui/icons-material/Send";
 import Button from "@mui/material/Button";
-import classes from "./CartOrederBlock.module.css";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import classes from "./CartOrederBlock.module.css";
 
 export default function CartTotalBlock() {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ export default function CartTotalBlock() {
 
   return (
     <Box className={classes.orderWrapper}>
-      <Typography level="h4">Total: </Typography>
+      <Typography>Total:</Typography>
 
       <div className={classes.cartReceipt}>
         <Typography sx={{ marginRight: 2 }} variant="body">

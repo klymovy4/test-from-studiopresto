@@ -7,16 +7,13 @@
 }
 .oreorderRecipienWrapper {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  flex: 1;
 }
 
 .orderRecipientItem {
-  width: 33.3%;
-  min-width: 240px;
   display: flex;
-  min-height: 50px;
-  flex: 0 0 33.333333%;
-  padding: 0.5rem;
+  padding: 0  0 0.5rem 0.5rem;
   box-sizing: border-box;
 }
 
@@ -27,13 +24,13 @@
   flex-direction: row;
   padding: 1rem;
   border-radius: 7px;
-  min-height: 50px;
+  height: fit-content;
   flex: 1;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 800px) {
   .orderRecipientItem {
-    flex: 0 0 50%;
+    padding-left: 0;
   }
 }
 @media only screen and (max-width: 700px) {

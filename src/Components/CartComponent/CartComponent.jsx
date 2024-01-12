@@ -1,18 +1,20 @@
-import Typography from "@mui/joy/Typography";
-import { useDispatch, useSelector } from "react-redux";
-import classes from "./Cart.module.css";
+import Typography from "@mui/material/Typography";
+import { useSelector } from "react-redux";
 import { Box } from "@mui/material";
 import CartItem from "../CartItem/CartItem";
 import CartTotalBlock from "../OrderBlock/CartTotalBlock";
+import classes from "./Cart.module.css";
 
 export default function CartComponent() {
-  const dispatch = useDispatch();
   const { cart } = useSelector((state) => state.cart);
 
   return (
-    <>
-      <Box sx={{ margin: 3 }} style={{marginBottom: 0}}>
-        <Typography level="h3" fontWeight="md" textColor="text.primary">
+    <Box
+    className="main-wrap-style"
+      component="main"
+    >
+      <Box sx={{ margin: 2, marginLeft: 0}}>
+        <Typography variant="h5">
           Your cart {cart.length === 0 && "is empty."}
         </Typography>
       </Box>
@@ -32,6 +34,6 @@ export default function CartComponent() {
           <CartTotalBlock />
         </div>
       )}
-    </>
+    </Box>
   );
 }
