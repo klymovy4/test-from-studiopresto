@@ -5,6 +5,7 @@ import {
   setItems,
   setItemsCategory,
   setSlicedItems,
+  toggleLoader
 } from "../store/itemsSlice";
 
 const pagePagination = 6;
@@ -13,12 +14,14 @@ export default function useApi() {
   const dispatch = useDispatch();
 
   const fetchItems = async function () {
+    dispatch(toggleLoader(true))
     // move to init()
     const products = await GET("products");
 
     let slicedItems = sliceItems(products.data);
     dispatch(setSlicedItems(slicedItems));
     dispatch(setItems(products.data));
+    dispatch(toggleLoader(false))
   };
 
   const fetchItemsCategory = async function () {
@@ -32,6 +35,7 @@ export default function useApi() {
   };
 
   const fetchSpetialCategory = async function (category) {
+    dispatch(toggleLoader(true))
     let product;
     if (!category) {
       product = await GET("products");
@@ -42,6 +46,7 @@ export default function useApi() {
     let result = sliceItems(product.data);
 
     dispatch(setSlicedItems(result));
+    dispatch(toggleLoader(false))
   };
 
   return { fetchItems, fetchItemsCategory, fetchSpetialCategory };

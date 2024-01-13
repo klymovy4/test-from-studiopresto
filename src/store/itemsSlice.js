@@ -5,6 +5,7 @@ const initialState = {
   items: [],
   categories: [],
   slicedItems: [],
+  isLoading: false
 };
 export const itemsSlice = createSlice({
   name: "items",
@@ -27,6 +28,9 @@ export const itemsSlice = createSlice({
       const filtererBySearch = state.items.filter(item => item.title.toLowerCase().includes(text.toLowerCase())) 
       state.slicedItems = sliceItems(filtererBySearch);  
     },
+    toggleLoader: (state, action) => {
+      state.isLoading = action.payload;
+    }
   },
 });
 
@@ -36,6 +40,7 @@ export const {
   getSpetialCategory,
   setSlicedItems,
   findBySearch,
+  toggleLoader
 } = itemsSlice.actions;
 
 export default itemsSlice.reducer;

@@ -3,6 +3,7 @@
   justify-content: space-between;
   flex-direction: row;
   border-radius: 7px;
+  margin-bottom: 0.5rem;
   align-items: center;
   height: fit-content;
   padding: 1rem;

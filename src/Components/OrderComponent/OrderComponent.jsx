@@ -14,7 +14,7 @@ export default function OrderComponent() {
 
   useEffect(() => {
     if (totalPrice === 0) {
-      navigate("/cart"); // todo
+      navigate("/cart");
     }
   });
 
