@@ -12,6 +12,7 @@ import CartComponent from "./Components/CartComponent/CartComponent";
 import OrderComponent from "./Components/OrderComponent/OrderComponent";
 import { Toolbar } from "@mui/material";
 import "./index.css";
+import SuccessPage from "./Components/SuccessPage.jsx/SuccessPage";
 
 function Layout() {
   return (
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
         path: "order",
         element: <OrderComponent />,
       },
+      {
+        path: 'success',
+        element: <SuccessPage />
+      }
     ],
   },
 ]);

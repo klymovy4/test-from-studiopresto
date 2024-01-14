@@ -27,3 +27,20 @@ export function getTotalPrice(cart) {
   const roundedTotal = total.toFixed(2);
   return parseFloat(roundedTotal);
 }
+
+export function postEmail(result) {
+  fetch("http://localhost:4000/api/email", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(result),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Server response:", data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}

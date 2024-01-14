@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { FormControl } from "@mui/material";
 import TextField from "@mui/material/TextField";
@@ -9,8 +9,14 @@ import { validationSchema } from "./yupSchema";
 import showNotification from "../../Components/Notification/Notification";
 import classes from "./FormComponent.module.css";
 
+import {resetCart} from '../../store/cartSlice'
+import { useNavigate } from "react-router-dom";
+
+import { postEmail } from "../../utils/helper";
 export default function FormComponent() {
   const cart = useSelector((state) => state.cart);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function concatResult(values) {
     const cartResult = cart.cart;
@@ -20,6 +26,10 @@ export default function FormComponent() {
       totalPrice: cart.totalPrice,
     };
     console.log(result);
+
+    postEmail(result);
+    dispatch(resetCart());
+    navigate("/success", { state: values });
   }
 
   const formik = useFormik({
@@ -29,10 +39,6 @@ export default function FormComponent() {
       phone: "",
     },
     onSubmit: async (values) => {
-      // send on google form
-      // const formLink = `https://docs.google.com/forms/d/e/1FAIpQLSdaqy7_oa_ifX3LfwEA0cS4nsB8X9agV329K5YKhSXTy3SE8w/formResponse?usp=pp_url&entry.1656568190=${event.name}&entry.160385572=${event.email}&entry.986887705=${event.phone}&submit=Submit`;
-      // const res = await fetch(formLink);
-
       concatResult(values);
       showNotification({
         type: "success",
@@ -53,7 +59,7 @@ export default function FormComponent() {
           formik.handleSubmit();
         }}
       >
-        <FormControl  sx={{ width: "100%" }}>
+        <FormControl sx={{ width: "100%" }}>
           <TextField
             sx={{ marginTop: 3 }}
             id="name"
@@ -84,7 +90,7 @@ export default function FormComponent() {
         ) : null}
 
         <br />
-        <FormControl  sx={{ width: "100%" }}>
+        <FormControl sx={{ width: "100%" }}>
           <TextField
             sx={{ marginTop: 3 }}
             id="phone"

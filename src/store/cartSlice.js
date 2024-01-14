@@ -1,10 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import {
-  cartCounter,
-  sumOfOnePosition,
-  getTotalPrice,
-} from "../utils/helper";
+import { cartCounter, sumOfOnePosition, getTotalPrice } from "../utils/helper";
 import showNotification from "../Components/Notification/Notification";
 
 const initialState = {
@@ -74,8 +70,7 @@ export const cartSlice = createSlice({
       state.totalPrice = getTotalPrice(state.cart); // DRY
     },
 
-    removeOnePosition: (state, action) => {
-      // DRY
+    removeOnePosition: (state, action) => {// DRY
       const { id } = action.payload;
       const itemCart = state.cart.find((item) => item.item.id === id);
 
@@ -90,14 +85,15 @@ export const cartSlice = createSlice({
       state.cartCounter = cartCounter(state.cart); // DRY
       state.totalPrice = getTotalPrice(state.cart); // DRY
     },
+    resetCart(state) {
+      state.cart = [];
+      state.cartCounter = cartCounter(state.cart); // DRY
+      state.totalPrice = getTotalPrice(state.cart);
+    },
   },
 });
 
-export const {
-  addToCart,
-  remoteItem,
-  removeOnePosition,
-  plusOnePosition,
-} = cartSlice.actions;
+export const { addToCart, remoteItem, removeOnePosition, plusOnePosition, resetCart } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;
