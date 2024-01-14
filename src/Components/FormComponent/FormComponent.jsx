@@ -9,11 +9,12 @@ import { validationSchema } from "./yupSchema";
 import showNotification from "../../Components/Notification/Notification";
 import classes from "./FormComponent.module.css";
 
-import {resetCart} from '../../store/cartSlice'
+import { resetCart } from "../../store/cartSlice";
 import { useNavigate } from "react-router-dom";
+import useApi from "../../api/useApi";
 
-import { postEmail } from "../../utils/helper";
 export default function FormComponent() {
+  const { postEmail } = useApi();
   const cart = useSelector((state) => state.cart);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ export default function FormComponent() {
     postEmail(result);
     dispatch(resetCart());
     navigate("/success", { state: values });
+    localStorage.clear();
   }
 
   const formik = useFormik({

@@ -16,7 +16,6 @@ export default function BasicCard({ item }) {
 
   return (
     <Card
-    
       sx={{
         width: 320,
         maxWidth: "100%",
@@ -26,15 +25,12 @@ export default function BasicCard({ item }) {
       }}
       onClick={() => navigate(`item/${item.id}`, { state: item })}
     >
-    
       <ImageWrapper {...item} style={{ height: "300px" }} />
-      <CardContent style={{display: 'flex', justifyContent: 'start'}}>
+      <CardContent style={{ display: "flex", justifyContent: "start" }}>
         <Typography variant="caption">{item?.category}</Typography>
-        <Typography  variant="subtitle1">
-          {item.title}
-        </Typography>
+        <Typography variant="subtitle1">{item.title}</Typography>
 
-        <Typography variant="subtitl2" sx={{ mt: 'auto', }}>
+        <Typography variant="subtitl2" sx={{ mt: "auto" }}>
           {item?.price} ₴
         </Typography>
       </CardContent>

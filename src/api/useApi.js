@@ -5,7 +5,7 @@ import {
   setItems,
   setItemsCategory,
   setSlicedItems,
-  toggleLoader
+  toggleLoader,
 } from "../store/itemsSlice";
 
 const pagePagination = 6;
@@ -13,41 +13,73 @@ const pagePagination = 6;
 export default function useApi() {
   const dispatch = useDispatch();
 
-  const fetchItems = async function () {
-    dispatch(toggleLoader(true))
-    // move to init()
-    const products = await GET("products");
+  const init = function () {
+    fetchItems();
+    fetchItemsCategory();
+    localStorage.setItem("currentCategory", "all");
+  };
 
-    let slicedItems = sliceItems(products.data);
-    dispatch(setSlicedItems(slicedItems));
-    dispatch(setItems(products.data));
-    dispatch(toggleLoader(false))
+  const fetchItems = async function () {
+    dispatch(toggleLoader(true));
+    const products = await GET("products");
+    if (products?.data) {
+      let slicedItems = sliceItems(products.data);
+
+      dispatch(setSlicedItems(slicedItems));
+      dispatch(setItems(products.data));
+      dispatch(toggleLoader(false));
+    }
   };
 
   const fetchItemsCategory = async function () {
-    // move to init()
     let categories = await GET("products/categories");
-    categories = categories.data.map(
-      (element) => element.charAt(0).toUpperCase() + element.slice(1)
-    );
-
-    dispatch(setItemsCategory(categories));
+    const data = categories?.data;
+    if (data) {
+      dispatch(setItemsCategory(data));
+    }
   };
 
   const fetchSpetialCategory = async function (category) {
-    dispatch(toggleLoader(true))
+    dispatch(toggleLoader(true));
     let product;
     if (!category) {
       product = await GET("products");
+      localStorage.setItem("currentCategory", "all");
     } else {
-      category = category.toLowerCase();
       product = await GET(`products/category/${category}`);
+      localStorage.setItem("currentCategory", category);
     }
-    let result = sliceItems(product.data);
+    let result;
+    if (product?.data) {
+      result = sliceItems(product.data);
+    }
 
     dispatch(setSlicedItems(result));
-    dispatch(toggleLoader(false))
+    dispatch(toggleLoader(false));
   };
 
-  return { fetchItems, fetchItemsCategory, fetchSpetialCategory };
+  const postEmail = async function (result) {
+    fetch("http://localhost:4000/api/email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(result),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Server response:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
+  return {
+    fetchItems,
+    fetchItemsCategory,
+    fetchSpetialCategory,
+    init,
+    postEmail,
+  };
 }

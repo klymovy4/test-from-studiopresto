@@ -41,17 +41,20 @@ export default function DrawerComponent() {
                 <ListItemText primary={"All"} />
               </ListItemButton>
             </ListItem>
-            {categories.map((text) => (
-              <ListItem
-                key={text}
-                disablePadding
-                onClick={() => fetchSpetialCategory(text)}
-              >
-                <ListItemButton>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
+            {categories &&
+              categories.map((text) => (
+                <ListItem
+                  key={text}
+                  disablePadding
+                  onClick={() => fetchSpetialCategory(text)}
+                >
+                  <ListItemButton>
+                    <ListItemText
+                      primary={text.charAt(0).toUpperCase() + text.slice(1)}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              ))}
           </List>
           <Divider />
         </Box>

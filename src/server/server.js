@@ -21,7 +21,6 @@ app.post("/api/email", (req, res) => {
   const postData = req.body;
 
   const emailHtml = tools.createEmailTemplate(postData);
-  console.log("tools", emailHtml);
 
   const options = {
     from: "klymovy4roman@gmail.com",

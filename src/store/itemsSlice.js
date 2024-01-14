@@ -5,7 +5,8 @@ const initialState = {
   items: [],
   categories: [],
   slicedItems: [],
-  isLoading: false
+  isLoading: false,
+  initialized: false,
 };
 export const itemsSlice = createSlice({
   name: "items",
@@ -20,9 +21,6 @@ export const itemsSlice = createSlice({
     setItemsCategory: (state, action) => {
       state.categories = action.payload;
     },
-    getSpetialCategory: (state, action) => {
-      console.log(action.payload);
-    },
     findBySearch: (state, action) => {
       const text = action.payload;
       const filtererBySearch = state.items.filter(item => item.title.toLowerCase().includes(text.toLowerCase())) 
@@ -30,17 +28,20 @@ export const itemsSlice = createSlice({
     },
     toggleLoader: (state, action) => {
       state.isLoading = action.payload;
-    }
+    },
+    initializedApp: (state) => {
+      state.initialized = true;
+    },
   },
 });
 
 export const {
   setItems,
   setItemsCategory,
-  getSpetialCategory,
   setSlicedItems,
   findBySearch,
-  toggleLoader
+  toggleLoader,
+  initializedApp
 } = itemsSlice.actions;
 
 export default itemsSlice.reducer;

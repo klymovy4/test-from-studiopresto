@@ -14,8 +14,17 @@ export default function MainPage() {
   const [searchValue, setSearchValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { fetchItems } = useApi();
-  const { slicedItems, isLoading } = useSelector((state) => state.items);
+  const { fetchSpetialCategory } = useApi();
+  const { slicedItems, isLoading, categories } = useSelector(
+    (state) => state.items
+  );
+
+  useEffect(() => {
+    const currentCategory = localStorage.getItem("currentCategory");
+    if (categories.includes(currentCategory)) {
+      fetchSpetialCategory(currentCategory);
+    }
+  }, []);
 
   useEffect(() => {
     if (slicedItems) {
@@ -23,12 +32,8 @@ export default function MainPage() {
     }
   }, [slicedItems]);
 
-  useEffect(() => {
-    fetchItems();
-  }, []);
-
   function checkCurrentPage() {
-    if (slicedItems.length > 0 && slicedItems[currentPage - 1]) {
+    if (slicedItems?.length > 0 && slicedItems[currentPage - 1]) {
       return true;
     }
     return false;
@@ -78,7 +83,7 @@ export default function MainPage() {
       </Box>
       <Box style={{ display: "flex", justifyContent: "center" }}>
         <BasicPagination
-          slicedItems={slicedItems.length}
+          slicedItems={slicedItems?.length}
           page={currentPage}
           changePagination={(page) => setCurrentPage(page)}
         />
