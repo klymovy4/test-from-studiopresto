@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import useApi from "./api/useApi";
 import Box from "@mui/material/Box";
-import DrawerComponent from "./Components/Drawer/Drawer";
+import DrawerComponent from "./Components/DrawerComponent/DrawerComponent";
 import MainPage from "./Components/MainPage/MainPage";
 import { useDispatch, useSelector } from "react-redux";
 import { initializedApp } from "./store/itemsSlice";

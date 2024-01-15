@@ -26,8 +26,7 @@ export default function FormComponent() {
       cart: [...cartResult],
       totalPrice: cart.totalPrice,
     };
-    console.log(result);
-
+    console.log('%c result ', 'background: grey; padding: 5px; border-radius: 7px', result);
     postEmail(result);
     dispatch(resetCart());
     navigate("/success", { state: values });

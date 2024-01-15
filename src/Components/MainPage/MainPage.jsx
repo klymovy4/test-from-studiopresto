@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import useApi from "../../api/useApi";
 import { findBySearch } from "../../store/itemsSlice";
 import BasicPagination from "../Pagination/Pagination";
-import BasicCard from "../../Components/Card/ProductCard";
+import BasicCard from "../ProductCard/ProductCard";
 import { useSelector, useDispatch } from "react-redux";
 import Input from "@mui/joy/Input";
 import Loader from "../Loader/Loader";
