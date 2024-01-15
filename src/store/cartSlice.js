@@ -29,7 +29,6 @@ export const cartSlice = createSlice({
       }
       state.cartCounter = cartCounter(state.cart);
       state.cart.forEach((item) => {
-        // DRY
         item.priceCurrentPosition = sumOfOnePosition(item);
       });
 
@@ -41,15 +40,12 @@ export const cartSlice = createSlice({
     },
 
     remoteItem: (state, action) => {
-      // DRY
-
       state.cart = state.cart.filter((item) => item.item.id != action.payload);
       state.cartCounter = cartCounter(state.cart);
       state.cart.forEach((item) => {
-        // DRY
-        item.priceCurrentPosition = sumOfOnePosition(item); // DRY
+        item.priceCurrentPosition = sumOfOnePosition(item);
       });
-      state.totalPrice = getTotalPrice(state.cart); // DRY
+      state.totalPrice = getTotalPrice(state.cart);
 
       showNotification({
         type: "error",
@@ -66,11 +62,11 @@ export const cartSlice = createSlice({
         itemCart.priceCurrentPosition = itemCart.quantity * itemCart.item.price;
       }
 
-      state.cartCounter = cartCounter(state.cart); // DRY
-      state.totalPrice = getTotalPrice(state.cart); // DRY
+      state.cartCounter = cartCounter(state.cart); 
+      state.totalPrice = getTotalPrice(state.cart); 
     },
 
-    removeOnePosition: (state, action) => {// DRY
+    removeOnePosition: (state, action) => {
       const { id } = action.payload;
       const itemCart = state.cart.find((item) => item.item.id === id);
 
@@ -82,12 +78,13 @@ export const cartSlice = createSlice({
             itemCart.quantity * itemCart.item.price;
         }
       }
-      state.cartCounter = cartCounter(state.cart); // DRY
-      state.totalPrice = getTotalPrice(state.cart); // DRY
+      state.cartCounter = cartCounter(state.cart); 
+      state.totalPrice = getTotalPrice(state.cart);
     },
+
     resetCart(state) {
       state.cart = [];
-      state.cartCounter = cartCounter(state.cart); // DRY
+      state.cartCounter = cartCounter(state.cart);
       state.totalPrice = getTotalPrice(state.cart);
     },
   },
