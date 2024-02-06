@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: end;
+  padding: 1rem 0 0;
 }
 .totalPrice {
   background-color: #00a0461a;

@@ -12,6 +12,7 @@ import classes from "./FormComponent.module.css";
 import { resetCart } from "../../store/cartSlice";
 import { useNavigate } from "react-router-dom";
 import useApi from "../../api/useApi";
+import OrderButton from "../OrderButton/OrderButton";
 
 export default function FormComponent() {
   const { postEmail } = useApi();
@@ -107,21 +108,7 @@ export default function FormComponent() {
 
         <br />
         <div className={classes.orderComponentFooter}>
-          <div className={classes.cartReceipt}>
-            <Button
-              variant="contained"
-              type="submit"
-              size="small"
-              color="success"
-              sx={{ marginRight: 1 }}
-              endIcon={<SendIcon />}
-            >
-              Order
-            </Button>
-            <Typography variant="body">
-              {cart.totalPrice.toFixed(2)} ₴
-            </Typography>
-          </div>
+          <OrderButton type={'submit'}  totalPrice={cart.totalPrice} />
         </div>
       </form>
     </div>

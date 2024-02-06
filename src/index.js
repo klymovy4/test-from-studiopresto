@@ -49,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: 'success',
         element: <SuccessPage />
+      },
+      {
+        path: '*',
+        element: <App />
       }
     ],
   },

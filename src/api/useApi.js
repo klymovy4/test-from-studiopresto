@@ -8,8 +8,6 @@ import {
   toggleLoader,
 } from "../store/itemsSlice";
 
-const pagePagination = 6;
-
 export default function useApi() {
   const dispatch = useDispatch();
 

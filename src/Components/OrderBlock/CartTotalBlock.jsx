@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import classes from "./CartOrederBlock.module.css";
+import OrderButton from "../OrderButton/OrderButton";
 
 export default function CartTotalBlock() {
   const navigate = useNavigate();
@@ -14,21 +15,7 @@ export default function CartTotalBlock() {
     <Box className={classes.orderWrapper}>
       <Typography>Total:</Typography>
 
-      <div className={classes.cartReceipt}>
-        <Typography sx={{ marginRight: 2 }} variant="body">
-          {totalPrice.toFixed(2)} ₴
-        </Typography>
-
-        <Button
-          variant="contained"
-          size="small"
-          color="success"
-          endIcon={<SendIcon />}
-          onClick={() => navigate("/order")}
-        >
-          Order
-        </Button>
-      </div>
+      <OrderButton onClick={() => navigate("/order")} totalPrice={totalPrice} />
     </Box>
   );
 }

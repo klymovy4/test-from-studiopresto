@@ -40,7 +40,7 @@ export const cartSlice = createSlice({
     },
 
     remoteItem: (state, action) => {
-      state.cart = state.cart.filter((item) => item.item.id != action.payload);
+      state.cart = state.cart.filter((item) => item.item.id !== action.payload);
       state.cartCounter = cartCounter(state.cart);
       state.cart.forEach((item) => {
         item.priceCurrentPosition = sumOfOnePosition(item);
