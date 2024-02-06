@@ -2,18 +2,18 @@ import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
 import { Box } from "@mui/material";
 import CartItem from "../CartItem/CartItem";
-import CartTotalBlock from "../OrderBlock/CartTotalBlock";
 import classes from "./Cart.module.css";
+import { useNavigate } from "react-router-dom";
+import OrderButton from "../OrderButton/OrderButton";
 
 export default function CartComponent() {
+  const navigate = useNavigate();
   const { cart } = useSelector((state) => state.cart);
+  const { totalPrice } = useSelector((state) => state.cart);
 
   return (
-    <Box
-    className="main-wrap-style"
-      component="main"
-    >
-      <Box sx={{ margin: 2, marginLeft: 0}}>
+    <Box className="main-wrap-style" component="main">
+      <Box sx={{ margin: 2, marginLeft: 0 }}>
         <Typography variant="h5">
           Your cart {cart.length === 0 && "is empty."}
         </Typography>
@@ -31,7 +31,14 @@ export default function CartComponent() {
               />
             );
           })}
-          <CartTotalBlock />
+          <Box className={classes.orderWrapper}>
+            <Typography>Total:</Typography>
+
+            <OrderButton
+              onClick={() => navigate("/order")}
+              totalPrice={totalPrice}
+            />
+          </Box>
         </div>
       )}
     </Box>

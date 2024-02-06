@@ -2,10 +2,10 @@ import Typography from "@mui/material/Typography";
 import SendIcon from "@mui/icons-material/Send";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import classes from "../OrderBlock/CartOrederBlock.module.css";
+import classes from "./OrderButton.module.css";
 
 export default function OrderButton({ onClick, totalPrice, type }) {
-  console.log(6, onClick, totalPrice, type);
+
   return (
     <Box
       className={classes.cartReceipt}

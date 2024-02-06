@@ -2,13 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { FormControl } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import SendIcon from "@mui/icons-material/Send";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import { validationSchema } from "./yupSchema";
 import showNotification from "../../Components/Notification/Notification";
 import classes from "./FormComponent.module.css";
-
 import { resetCart } from "../../store/cartSlice";
 import { useNavigate } from "react-router-dom";
 import useApi from "../../api/useApi";
