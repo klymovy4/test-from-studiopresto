@@ -16,7 +16,6 @@ export default function Header() {
   return (
     <Box sx={{ display: "flex" }}>
       <AppBar
-        claposition="fixed"
         style={{ background: "#3b556f" }}
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
       >

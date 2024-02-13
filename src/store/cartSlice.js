@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 import { cartCounter, sumOfOnePosition, getTotalPrice } from "../utils/helper";
 import showNotification from "../Components/Notification/Notification";
@@ -17,7 +17,7 @@ export const cartSlice = createSlice({
       const item = action.payload;
 
       const itemCart = state.cart.find((el) => el.item.id === item.id);
-
+     
       if (itemCart) {
         itemCart.quantity += 1;
       } else {
@@ -62,8 +62,8 @@ export const cartSlice = createSlice({
         itemCart.priceCurrentPosition = itemCart.quantity * itemCart.item.price;
       }
 
-      state.cartCounter = cartCounter(state.cart); 
-      state.totalPrice = getTotalPrice(state.cart); 
+      state.cartCounter = cartCounter(state.cart);
+      state.totalPrice = getTotalPrice(state.cart);
     },
 
     removeOnePosition: (state, action) => {
@@ -78,7 +78,7 @@ export const cartSlice = createSlice({
             itemCart.quantity * itemCart.item.price;
         }
       }
-      state.cartCounter = cartCounter(state.cart); 
+      state.cartCounter = cartCounter(state.cart);
       state.totalPrice = getTotalPrice(state.cart);
     },
 
