@@ -12,7 +12,7 @@ import CartComponent from "./Components/CartComponent/CartComponent";
 import OrderComponent from "./Components/OrderComponent/OrderComponent";
 import { Toolbar } from "@mui/material";
 import "./index.css";
-import SuccessPage from "./Components/SuccessPage.jsx/SuccessPage";
+import SuccessPage from "./Components/SuccessPage/SuccessPage";
 
 function Layout() {
   return (

@@ -13,12 +13,8 @@ import { useSelector } from "react-redux";
 const drawerWidth = 165;
 
 export default function DrawerComponent() {
-  const { fetchItemsCategory, fetchSpetialCategory } = useApi();
+  const { fetchSpetialCategory } = useApi();
   const { categories } = useSelector((state) => state.items);
-
-  useEffect(() => {
-    fetchItemsCategory();
-  }, []);
 
   return (
     <Box sx={{ display: "flex" }}>
