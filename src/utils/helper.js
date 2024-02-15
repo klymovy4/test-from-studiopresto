@@ -16,7 +16,8 @@ export function cartCounter(state) {
 }
 
 export function sumOfOnePosition(item) {
-  return item.item.price * item.quantity;
+  let res = item.item.price * item.quantity;
+  return Number(res.toFixed(2));
 }
 
 export function getTotalPrice(cart) {

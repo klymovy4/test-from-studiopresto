@@ -6,6 +6,7 @@ import {
   setItemsCategory,
   setSlicedItems,
   toggleLoader,
+  setItemsError,
 } from "../store/itemsSlice";
 
 export default function useApi() {
@@ -18,14 +19,19 @@ export default function useApi() {
   };
 
   const fetchItems = async function () {
-    dispatch(toggleLoader(true));
-    const products = await GET("products");
-    if (products?.data) {
-      let slicedItems = sliceItems(products.data);
+    try {
+      dispatch(toggleLoader(true));
+      const products = await GET("products");
+      if (products?.data) {
+        let slicedItems = sliceItems(products.data);
 
-      dispatch(setSlicedItems(slicedItems));
-      dispatch(setItems(products.data));
+        dispatch(setSlicedItems(slicedItems));
+        dispatch(setItems(products.data));
+        dispatch(toggleLoader(false));
+      }
+    } catch (e) {
       dispatch(toggleLoader(false));
+      dispatch(setItemsError(e.message));
     }
   };
 

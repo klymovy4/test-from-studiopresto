@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {sliceItems} from '../utils/helper'
+import { sliceItems } from "../utils/helper";
 
 const initialState = {
   items: [],
@@ -7,6 +7,7 @@ const initialState = {
   slicedItems: [],
   isLoading: false,
   initialized: false,
+  error: "",
 };
 export const itemsSlice = createSlice({
   name: "items",
@@ -14,6 +15,9 @@ export const itemsSlice = createSlice({
   reducers: {
     setItems: (state, action) => {
       state.items = action.payload;
+    },
+    setItemsError: (state, action) => {
+      state.error = action.payload;
     },
     setSlicedItems: (state, action) => {
       state.slicedItems = action.payload;
@@ -23,8 +27,10 @@ export const itemsSlice = createSlice({
     },
     findBySearch: (state, action) => {
       const text = action.payload;
-      const filtererBySearch = state.items.filter(item => item.title.toLowerCase().includes(text.toLowerCase())) 
-      state.slicedItems = sliceItems(filtererBySearch);  
+      const filtererBySearch = state.items.filter((item) =>
+        item.title.toLowerCase().includes(text.toLowerCase())
+      );
+      state.slicedItems = sliceItems(filtererBySearch);
     },
     toggleLoader: (state, action) => {
       state.isLoading = action.payload;
@@ -41,7 +47,8 @@ export const {
   setSlicedItems,
   findBySearch,
   toggleLoader,
-  initializedApp
+  initializedApp,
+  setItemsError,
 } = itemsSlice.actions;
 
 export default itemsSlice.reducer;
